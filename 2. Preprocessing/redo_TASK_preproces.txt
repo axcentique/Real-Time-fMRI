@@ -1,0 +1,24 @@
+#!/bin/sh
+# This is made from csfwm_filter.csh.
+# this script requires files from csf_filer.csh
+# the associated files Feat_Custom1.txt,  csf_filter_design.fsf csf_filter_Delta.fsf need to  be located in the same directory as this script.
+# the FEAT setup is based on 225 volumes
+# this script requires a brain extracted high resolution T1 image
+
+SBJID=$1
+RUN=$2
+STUDY=$3
+
+
+# Create CSF/WM/motion regressors
+echo "One part"
+cd /Volumes/Annex1/${STUDY}/
+echo "Two part"
+sh FEAT_all.txt $SBJID $RUN $STUDY
+echo "Three part"
+cd /Volumes/Annex1/${STUDY}/${SBJID}/
+mv ${SBJID}_${RUN}_mc.feat/design.mat ${SBJID}_${RUN}_all.mat
+rm -rf ${SBJID}_${RUN}_mc.feat
+
+#Filter above regressors from the motion corrected func data
+fsl_regfilt -i  ${SBJID}_${RUN}_mc.nii.gz -d ${SBJID}_${RUN}_all.mat -f "1,2,3,4,5,6,7,8" -o ${SBJID}_${RUN}_filt_all

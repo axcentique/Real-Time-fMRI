@@ -1,0 +1,18 @@
+data_folder="/Users/george/Data/rtfMRI/August/subjects/preprocessed"
+output_folder="/Users/george/Data/rtfMRI/August/subjects/filtered"
+subjid=(4 6 7 8 10)
+rests=(1 2)
+
+cd $data_folder
+
+for s in "${subjid[@]}"
+do
+    for r in "${rests[@]}"
+    do
+        if [ ! -f subject${s}_rest${r}_all.nii.gz ]; then
+            continue
+        else
+            fslmaths subject${s}_rest${r}_all.nii.gz -bptf 5 1 ${output_folder}/subject${s}_rest${r}_band_pass.nii.gz
+        fi
+    done
+done

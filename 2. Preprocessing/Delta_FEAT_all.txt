@@ -1,0 +1,27 @@
+# 4D AVW data or FEAT directory (1)
+set feat_files(1) "/Volumes/Annex1/cj_study/cj_sbjid/cj_sbjid_cj_run_mc"
+
+# Custom EV file (EV 1)
+set fmri(custom1) "/Volumes/Annex1/cj_study/cj_sbjid/cj_sbjid_cj_run_csf_ts.txt"
+
+# Custom EV file (EV 2)
+set fmri(custom2) "/Volumes/Annex1/cj_study/cj_sbjid/cj_sbjid_cj_run_mc_x.txt"
+
+# Custom EV file (EV 3)
+set fmri(custom3) "/Volumes/Annex1/cj_study/cj_sbjid/cj_sbjid_cj_run_mc_y.txt"
+
+# Custom EV file (EV 4)
+set fmri(custom4) "/Volumes/Annex1/cj_study/cj_sbjid/cj_sbjid_cj_run_mc_z.txt"
+
+# Custom EV file (EV 5)
+set fmri(custom5) "/Volumes/Annex1/cj_study/cj_sbjid/cj_sbjid_cj_run_mc_roll.txt"
+
+# Custom EV file (EV 6)
+set fmri(custom6) "/Volumes/Annex1/cj_study/cj_sbjid/cj_sbjid_cj_run_mc_pitch.txt"
+
+# Custom EV file (EV 7)
+set fmri(custom7) "/Volumes/Annex1/cj_study/cj_sbjid/cj_sbjid_cj_run_mc_yaw.txt"
+
+# Custom EV file (EV 8)
+set fmri(custom8) "/Volumes/Annex1/cj_study/cj_sbjid/cj_sbjid_cj_run_wm_ts.txt"
+

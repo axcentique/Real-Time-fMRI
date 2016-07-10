@@ -1,0 +1,1 @@
+These scripts were only used for prototyping, so it’s all spaghetti code.

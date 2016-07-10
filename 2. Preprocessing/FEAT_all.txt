@@ -1,0 +1,61 @@
+#!/bin/sh
+#  
+# This script reworks specific lines of the fsf file.
+# These lines are contained in the file "csf_filter_Delta.fsf"
+# You call this script with 3 parameters
+# 
+PURPOSE="Batch processs the creation of .mat files that require uniquely specified EV files for CSF physio correction" ;
+PGM="Feat_Custom1(v1.0)" ;
+# 
+
+# test number of arguments else exit
+if [ $# -lt 3 ] ; then
+	echo "========+++++++++==========+++++++++     Program:  ${PGM}" ;
+	echo "Use this routine to:${PURPOSE}" ;
+	echo ""
+	echo "Usage: "
+	echo "sh Feat_Custom1 <sbjid> <run> <study>" ;
+	echo ""
+	echo "Note:"
+	echo "1) The helping files 'csf_filter.fsf' and 'csf_filter_Delta.fsf'"
+	echo "  Must be in the same folder as this file"
+	echo "2) To run this in Batch Mode -- prepare a scipt file that repeated calls"
+	echo "  this routine with different parameters"
+	echo "sh Feat_Custom1.txt 111 222 333"
+	echo "sh Feat_Custom1.txt A111 A222 A333"
+	echo "============================="
+exit
+fi
+
+echo "in FEAT_all.txt"
+
+# cj_sbjid  $1
+# cj_run  $2
+# cj_study  $3
+
+# Use the input parameters to generate a sed action file.
+
+echo "s/cj_sbjid/${1}/g 
+s/cj_run/${2}/g 
+s/cj_study/${3}/g" > ${1}/cj_tmp.txt ;
+
+#cat cj_tmp.txt
+
+#use sed to change the file location parameters in Delta_FEAT_all.txt
+
+sed -f ${1}/cj_tmp.txt Delta_FEAT_all.txt > ${1}/all_delta.txt;
+
+# Concatenate the two fsf file parts - note extension changes
+cat Design_FEAT_all.fsf ${1}/all_delta.txt > ${1}/all_design.fsf
+
+# Use the all_design.fsf file to run the FEAT procedure.
+
+echo Running FEAT for $1 $2 $3
+feat ${1}/all_design.fsf
+
+# Clean Up a bit
+# rm cj_t*
+# rm cj_d*
+
+exit
+
